@@ -2,7 +2,7 @@
 pragma solidity ^0.8.15;
 
 interface IRNG {
-   function getRandomFromRange(uint256 _min, uint256 _max) external view virtual returns (uint32);
+   function getRandomFromRange(uint256 _min, uint256 _max) external view returns (uint32);
 }
 
 contract Game {
