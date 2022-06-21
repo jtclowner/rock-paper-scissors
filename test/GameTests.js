@@ -16,7 +16,9 @@ const deployGame = async (rngAddress) => {
   await game.deployed();
   return game;
 };
+
 describe(`Game.sol`, async() => {
+
   describe(`Enemy uses Rock`, async() => {
     before(async() => {
       const rngContract = await deployMockRng(1);

@@ -18,6 +18,7 @@ const deployGame = async (rngAddress) => {
 };
 
 describe(`Game2.sol`, async() => {
+
   describe(`Test user inputs`, async() => {
     before(async() => {
       rngContract = await deployMockRng(2);
@@ -58,7 +59,6 @@ describe(`Game2.sol`, async() => {
         .to.be.revertedWith('Input a valid move');
     });
   });
-
 
   describe(`Test commit-reveal schema`, async() => {
     before(async() => {

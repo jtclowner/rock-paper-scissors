@@ -1,7 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.15;
 
-// Inherit from another contract to use its functions
 interface IRNG {
    function getRandomFromRange(uint256 _min, uint256 _max) external view virtual returns (uint32);
 }

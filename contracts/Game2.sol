@@ -35,12 +35,6 @@ contract Game2 {
     // Set RNG contract address
     rngAddr = rngaddr;
     // Create game options. Rock Paper Scissors (..Lizard, Spock, etc)
-
-
-    // To save gas on comparisons later, we store the keccak256 hash 
-    // for the strongTo/weakTo values within the Logic struct 
-
-
     Logic memory rock = Logic("Scissors", "Paper");
     Logic memory paper = Logic("Rock", "Scissors");
     Logic memory scissors = Logic ("Paper", "Rock");
