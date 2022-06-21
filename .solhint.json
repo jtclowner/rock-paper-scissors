@@ -1,0 +1,15 @@
+{
+  "extends": "solhint:recommended",
+  "rules": {
+      "func-visibility": ["warn",{"ignoreConstructors":true}],
+      "compiler-version": ["error", "^0.8.15"],
+      "code-complexity": ["warn", 7],
+      "function-max-lines": ["warn", 45],
+      "max-line-length": ["warn", 99],
+      "constructor-syntax": "warn",
+      "func-param-name-mixedcase": "warn",
+      "modifier-name-mixedcase": "warn",
+      "private-vars-leading-underscore": "warn",
+      "ordering": "warn"
+  }
+}
