@@ -1,7 +1,7 @@
 # Rock-Paper-Scissors
 A single-player solidity rock paper scissors implementation using commit-reveal for added security.
 
-Game.sol demonstrates a rock-paper-scissors implementation that is vulnerable to attack by malicious block producers and transaction batching services like flashbots.
+Game.sol demonstrates a rock-paper-scissors implementation that is vulnerable to attack by adversarial smart contracts, malicious block producers and transaction batching services like flashbots.
 
 Game2.sol takes the same logic and implements a commit-reveal pattern that satisfies the following conditions:
 - All assets related to the random event are collected during the commitment, and users cannot retract or replace the commitment after it has been made.
@@ -14,6 +14,7 @@ This requires a malicious node to be able to mine 3 consecutive blocks in order 
 Safe randomness is outside of the scope of this project, but can be acquired via a VRF (Verifiable Random Function). In place of this, RNG.sol provides a getRandomFromRange function that returns a 32byte value as a fallible seed of randomness by grabbing the previous block.hash. For testing, RNGMock.sol provides a version  of the getRandomFromRange function that returns a predetermined integer value.
 
 ### Build me
+```npm i```
 
 #### Deploy on localhost and interact:
 1. ```npx hardhat node```
