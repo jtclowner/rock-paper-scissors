@@ -64,7 +64,7 @@ contract Game2 {
    function reveal() external returns (bool _won) {
       // Require a commitment to have already been made
       require(_commits[msg.sender].blockNumber != 0, "Your move, creep");
-      // Prevent the game's outcome from being revealed within the same block as the commitment.
+      // Prevent the game's outcome from being revealed unless we comitted 2 blocks ago
       require(_commits[msg.sender].blockNumber + 2 <= block.number, "Revealed too soon");
       
       // Grab pre-determined RNG outcome
