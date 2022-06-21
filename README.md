@@ -11,7 +11,7 @@ Game2.sol takes the same logic and implements a commit-reveal pattern that satis
 These conditions are met with a ``private`` commitment mapping and an ``onlyEOA`` modifier in order to prevent auxilary smart contracts from querying contract state or previous commitments, and a ``require`` for a minimum number of blocks between commits and reveals in order to prevent transaction reorganisation by nodes. Here, we require the commitment to have been made at least 2 blocks ago. 
 This requires a malicious node to be able to mine 3 consecutive blocks in order to undo a commitment and a prevent a 'losing' set of transactions from executing. The more blocks required between the commit and reveal phases, the more hash power a miner must control to game the system. 
 
-Safe randomness is outside of the scope of this project, but can be acquired via a VRF (Verifiable Random Function). In place of this, RNG.sol provides a getRandomFromRange function that returns a 32byte value as a fallible seed of randomness by grabbing the previous block.hash. For testing, RNGMock.sol provides a version  of the getRandomFromRange function that returns a predetermined integer value.
+Safe randomness is outside of the scope of this project, but can be acquired via a VRF (Verifiable Random Function). In place of this, RNG.sol provides a getRandom function that returns the previous block.hash as a 32byte value, used as source of unsafe randomness for the getRandomBetweenRange function. For testing, RNGMock.sol provides a version  of the getRandomFromRange function that returns a predetermined integer value.
 
 ### Build me
 ```npm i```
