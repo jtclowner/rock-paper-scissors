@@ -26,7 +26,7 @@ contract Game2 {
    event GameOver(address indexed player, string playerChoice, string enemyChoice, bool winStatus);
 
    // Modifier to prevent smart contract interactions. This prevents malicious contracts from
-   // querying the result of the RNG call and only calling playGame() under the right conditions
+   // calling functions then reverting if the conditions are not favourable 
    modifier onlyEOA {
       require(msg.sender == tx.origin, "EOAs only. No contracts.");
       _;
@@ -64,7 +64,7 @@ contract Game2 {
    function reveal() external returns (bool _won) {
       // Require a commitment to have already been made
       require(_commits[msg.sender].blockNumber != 0, "Your move, creep");
-      // Prevent the game's outcome from being revealed unless we comitted 2 blocks ago
+      // Prevent the game's outcome from being revealed unless we comitted 2 blocks ago or more
       require(_commits[msg.sender].blockNumber + 2 <= block.number, "Revealed too soon");
       
       // Grab pre-determined RNG outcome
