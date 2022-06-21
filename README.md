@@ -21,10 +21,10 @@ Safe randomness is outside of the scope of this project, but can be acquired via
 2. ```npx hardhat run --network localhost ./scripts/deploy.js```
 3. Copy deployed address and source code to Remix and select local development network
 
+#### Deploy on rinkeby and interact:
+1. Populate ``secrets.json`` with ``INFURA_API_KEY`` and ``privateKey``
+2. ```npx hardhat run --network rinkeby ./scripts/deploy.js```
+3. Copy deployed address and source code to Remix and select rinkeby network
+
 #### Run tests on localhost:
 ```npx hardhat test```
-
-#### Deploy on Ropsten and run tests:
-1. Populate ``secrets.json`` with ``INFURA_API_KEY`` and ``privateKey``
-2. ```npx hardhat run --network ropsten ./scripts/deploy.js```
-3. ```npx hardhat test --network ropsten```
