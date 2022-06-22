@@ -34,14 +34,10 @@ contract Game2 {
    constructor (address rngaddr) {
     // Set RNG contract address
     rngAddr = rngaddr;
-    // Create game options. Rock Paper Scissors (..Lizard, Spock, etc)
-    Logic memory rock = Logic("Scissors", "Paper");
-    Logic memory paper = Logic("Rock", "Scissors");
-    Logic memory scissors = Logic ("Paper", "Rock");
-    // Store the game logic to contract state
-    moveChoices["Rock"] = rock;
-    moveChoices["Paper"] = paper;
-    moveChoices["Scissors"] = scissors;
+    // Create and store game options. Rock Paper Scissors (..Lizard, Spock, etc)
+    moveChoices["Rock"] Logic("Scissors", "Paper");
+    moveChoices["Paper"] Logic("Rock", "Scissors");
+    moveChoices["Scissors"] Logic ("Paper", "Rock");
     }
 
 
@@ -73,20 +69,21 @@ contract Game2 {
          _commits[msg.sender].randomOutcome == 1? "Rock" :
          _commits[msg.sender].randomOutcome == 2? "Paper" :
          "Scissors";
-         // Resolve game outcome
+      // Resolve game outcome
+      string _userChoice = moveChoices[_commits[msg.sender].choice;
       if (
-         keccak256(abi.encodePacked(moveChoices[_commits[msg.sender].choice].strongTo)) ==
+         keccak256(abi.encodePacked(_userChoice].strongTo)) ==
          keccak256(abi.encodePacked(_enemyChoice))
          ) { // win
             _won = true;
-            emit GameOver(msg.sender, _commits[msg.sender].choice, _enemyChoice, _won);
+            emit GameOver(msg.sender, _userChoice, _enemyChoice, _won);
       } else if (
-         keccak256(abi.encodePacked(moveChoices[_commits[msg.sender].choice].weakTo)) ==
+         keccak256(abi.encodePacked(_userChoice].weakTo)) ==
          keccak256(abi.encodePacked(_enemyChoice))
          ) { // lose
-            emit GameOver(msg.sender, _commits[msg.sender].choice, _enemyChoice, _won);
+            emit GameOver(msg.sender, _userChoice, _enemyChoice, _won);
       } else { // draw
-         emit GameOver(msg.sender, _commits[msg.sender].choice, _enemyChoice, _won);
+         emit GameOver(msg.sender, _userChoice, _enemyChoice, _won);
       }
       // Delete the commitment to allow a new game to begin
       delete _commits[msg.sender];

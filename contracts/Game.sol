@@ -19,14 +19,10 @@ contract Game {
    constructor (address rngaddr) {
     // Set RNG contract address
     rngAddr = rngaddr;
-    // Create game options. Rock Paper Scissors (..Lizard, Spock, etc)
-    Logic memory rock = Logic("Scissors", "Paper");
-    Logic memory paper = Logic("Rock", "Scissors");
-    Logic memory scissors = Logic ("Paper", "Rock");
-    // Store the game logic to contract state
-    moveChoices["Rock"] = rock;
-    moveChoices["Paper"] = paper;
-    moveChoices["Scissors"] = scissors;
+    // Create and store game options. Rock Paper Scissors (..Lizard, Spock, etc)
+    moveChoices["Rock"] = Logic("Scissors", "Paper");
+    moveChoices["Paper"] = Logic("Rock", "Scissors");
+    moveChoices["Scissors"] = Logic ("Paper", "Rock");
     }
 
    function playGame(string memory _myChoice) external returns (bool _won) {
