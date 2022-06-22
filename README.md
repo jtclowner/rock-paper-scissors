@@ -1,9 +1,9 @@
 # Rock-Paper-Scissors
-A single-player solidity rock paper scissors implementation using commit-reveal for added security.
+A single-player rock-paper-scissors implementation in solidity using commit-reveal for added security.
 
-``Game.sol`` demonstrates a rock-paper-scissors implementation that is vulnerable to attack adversarial smart contracts, malicious block producers and transaction batching services like flashbots.
+``Game.sol`` demonstrates a rock-paper-scissors implementation that is vulnerable to attack by adversarial smart contracts, malicious block producers and transaction batching services like flashbots.
 
-``Game2.sol`` takes the same logic and protects against these attack vectors by implementing a commit-reveal pattern that the satisfies the following conditions:
+``Game2.sol`` takes the same logic and protects against these attack vectors by implementing a commit-reveal pattern that splits the random generation into a seperate transaction from the resulting outcome. This pattern the satisfies the following conditions:
 - All assets related to the random event are collected during the commitment, and users cannot retract or replace the commitment after it has been made.
 - The outcome is locked at the time the commitment is made, and users cannot infer the outcome while they are making the commitment. 
 
