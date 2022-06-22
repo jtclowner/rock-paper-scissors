@@ -1,5 +1,7 @@
 require("@nomiclabs/hardhat-waffle");
-const { privateKey, INFURA_API_KEY } = require(`./secrets.json`)
+require("solidity-coverage");
+
+// const { privateKey, INFURA_API_KEY } = require(`./secrets.json`);
 
 // This is a sample Hardhat task. To learn how to create your own go to
 // https://hardhat.org/guides/create-task.html
@@ -25,10 +27,10 @@ module.exports = {
       }
     ]
   },
-  networks:{
-    rinkeby:{
-      url:`https://rinkeby.infura.io/v3/${INFURA_API_KEY}`,
-      accounts:[privateKey]
-    }
-  }
+  // networks:{
+  //   rinkeby:{
+  //     url:`https://rinkeby.infura.io/v3/${INFURA_API_KEY}`,
+  //     accounts:[privateKey]
+  //   }
+  // }
 };
