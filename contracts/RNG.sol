@@ -7,8 +7,8 @@ contract RNG {
    }
             
    function getRandomFromRange(uint256 _min, uint256 _max) 
-   public view returns (uint8) {
-      uint8 random = uint8(uint256(getRandom()) % (_max) + _min);
+   public view returns (uint256) {
+      uint256 random = uint256(getRandom()) % (_max) + _min;
       return random;
    }     
 }

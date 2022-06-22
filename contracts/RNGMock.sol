@@ -7,7 +7,7 @@ contract RNGMock {
    }
             
    function getRandomFromRange(uint256 _min, uint256 _max)
-   public view returns (uint8) {
+   public view returns (uint256) {
       return result;
    }
 }
