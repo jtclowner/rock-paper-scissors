@@ -1,5 +1,5 @@
 const { expect } = require(`chai`);
-const { ethers } = require("hardhat")
+const { ethers } = require("hardhat");
 
 let gameContract; let rngContract; let owner; let alice; let bob;
 
@@ -18,11 +18,12 @@ const deployGame = async (rngAddress) => {
 };
 
 describe(`Game2.sol`, async() => {
-
+  before(async() => {
+    [owner, alice, bob] = await ethers.getSigners();
+  });
   describe(`Test user inputs`, async() => {
     before(async() => {
       rngContract = await deployMockRng(2);
-      [owner, alice, bob] = await ethers.getSigners();
     });
     beforeEach(async() => {
       // Redeploy the contract between each test to reset contract state
@@ -63,7 +64,6 @@ describe(`Game2.sol`, async() => {
   describe(`Test commit-reveal schema`, async() => {
     before(async() => {
       rngContract = await deployMockRng(1);
-      [owner, alice, bob] = await ethers.getSigners();
     });
 
     beforeEach(async() => {
