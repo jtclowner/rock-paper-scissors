@@ -28,7 +28,7 @@ Safe randomness is outside the scope of this project, but can be acquired via a 
 2. ```npx hardhat run --network rinkeby ./scripts/deploy.js```
 3. Copy deployed address and source code to Remix and select rinkeby network
 
-#### Linting:
-Smart contracts - ```npm run solhint```
-Tests and scripts - ```npm run eslint```
+#### Linting
+- Smart contracts: ```npm run solhint```
+- Tests and scripts: ```npm run eslint```
 
