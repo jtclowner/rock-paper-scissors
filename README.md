@@ -32,3 +32,7 @@ Safe randomness is outside the scope of this project, but can be acquired via a 
 - Smart contracts: ```npm run solhint```
 - Tests and scripts: ```npm run eslint```
 
+### To do
+- hardhat tasks/tests to emulate the attack vectors that game2 protects from
+- simple react UI
+- access control to allow contract owner to add new game options
