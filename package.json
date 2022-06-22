@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "compile": "npx hardhat compile",
-    "test": "npx hardhat test && npm run coverage",
-    "coverage": "npx hardhat coverage",
+    "test": "npx hardhat test",
+    "test-coverage": "npx hardhat coverage",
     "solhint": "solhint ./contracts/*.sol",
     "eslint": "npx eslint -f pretty ./test/*.js ./scripts/*.js"
   },
