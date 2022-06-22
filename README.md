@@ -15,6 +15,9 @@ Safe randomness is outside the scope of this project, but can be acquired via a 
 ### Build me
 ```npm i```
 
+#### Run tests on localhost:
+```npx hardhat test```
+
 #### Deploy on localhost and interact:
 1. ```npx hardhat node```
 2. ```npx hardhat run --network localhost ./scripts/deploy.js```
@@ -25,11 +28,7 @@ Safe randomness is outside the scope of this project, but can be acquired via a 
 2. ```npx hardhat run --network rinkeby ./scripts/deploy.js```
 3. Copy deployed address and source code to Remix and select rinkeby network
 
-#### Run tests on localhost:
-```npx hardhat test```
-
-##### Linting smart contracts:
-```npx run solhint```
-##### Linting tests and deployment scripts:
-```npx run eslint```
+#### Linting:
+Smart contracts - ```npm run solhint```
+Tests and scripts - ```npm run eslint```
 
