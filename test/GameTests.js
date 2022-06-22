@@ -1,7 +1,9 @@
 const { expect } = require('chai');
 const { ethers } = require('hardhat');
 
-let gameContract; let owner;
+let gameContract;
+let rngContract;
+let owner;
 
 const deployMockRng = async (desiredOutcome) => {
   const RNGMock = await ethers.getContractFactory('contracts/RNGMock.sol:RNGMock');
@@ -18,12 +20,58 @@ const deployGame = async (rngAddress) => {
 };
 
 describe(`Game.sol`, async() => {
+  before(async() => {
+    [owner] = await ethers.getSigners();
+  })
+  describe(`Test user inputs`, async() => {
+    before(async() => {
+      rngContract = await deployMockRng(2);
+    });
+    beforeEach(async() => {
+      // Redeploy the contract between each test to reset contract state
+      gameContract = await deployGame(rngContract.address);
+    });
+  
+    it(`User can play "Rock"`, async() => {
+      await expect(gameContract.connect(owner).playGame('Rock'))
+        .to.not.be.reverted;
+    });
+  
+    it(`User can play "Paper"`, async() => {
+      await expect(gameContract.connect(owner).playGame('Paper'))
+        .to.not.be.reverted;
+    });
+  
+    it(`User can play "Scissors"`, async() => {
+      await expect(gameContract.connect(owner).playGame('Scissors'))
+        .to.not.be.reverted;
+    });
+  
+    it(`User cannot play "rock"`, async() => {
+      await expect(gameContract.connect(owner).playGame('rock'))
+        .to.be.revertedWith('Input a valid move');
+    });
+  
+    it(`User cannot play "Aeroplane"`, async() => {
+      await expect(gameContract.connect(owner).playGame('Aeroplane'))
+        .to.be.revertedWith('Input a valid move');
+    });
+  
+    it(`User cannot play "1"`, async() => {
+      await expect(gameContract.connect(owner).playGame('1'))
+        .to.be.revertedWith('Input a valid move');
+    });
+  
+    it (`User cannot play an empty string`, async() => {
+      await expect(gameContract.connect(owner).playGame(""))
+        .to.be.revertedWith('Input a valid move');
+    });
+  });
 
   describe(`Enemy uses Rock`, async() => {
     before(async() => {
-      const rngContract = await deployMockRng(1);
+      rngContract = await deployMockRng(1);
       gameContract = await deployGame(rngContract.address);
-      [owner] = await ethers.getSigners();
     });
 
     it(`Rock vs Rock - Draw`, async() => {
@@ -47,7 +95,7 @@ describe(`Game.sol`, async() => {
 
   describe(`Enemy uses Paper`, async() => {
     before(async() => {
-      const rngContract = await deployMockRng(2);
+      rngContract = await deployMockRng(2);
       gameContract = await deployGame(rngContract.address);
       [owner] = await ethers.getSigners();
     });
@@ -73,7 +121,7 @@ describe(`Game.sol`, async() => {
 
   describe(`Enemy uses Scissors`, async() => {
     before(async() => {
-      const rngContract = await deployMockRng(3);
+      rngContract = await deployMockRng(3);
       gameContract = await deployGame(rngContract.address);
       [owner] = await ethers.getSigners();
     });

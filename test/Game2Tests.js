@@ -59,6 +59,11 @@ describe(`Game2.sol`, async() => {
       await expect(gameContract.connect(owner).playGame('1'))
         .to.be.revertedWith('Input a valid move');
     });
+
+    it (`User cannot play an empty string`, async() => {
+      await expect(gameContract.connect(owner).playGame(""))
+        .to.be.revertedWith('Input a valid move');
+    });
   });
 
   describe(`Test commit-reveal schema`, async() => {
